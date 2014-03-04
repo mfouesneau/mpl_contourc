@@ -375,7 +375,7 @@ def contourc(*args, **kwargs):
         contour.
     """
     C = ContourEngineContourSet(*args, **kwargs)
-    return C.get_polygones()
+    return C.get_polygons()
 
 
 def example_contourc():
