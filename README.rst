@@ -1,5 +1,5 @@
-Contourc, a low-level contour computation
-=========================================
+contourc, a low-level contour computation for Matplotlib
+========================================================
 (a.k.a. MATLAB-Like contourc)
 
 I was myself facing the need of a function that could compute the contours of
