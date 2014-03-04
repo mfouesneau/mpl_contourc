@@ -39,39 +39,65 @@ The values in Z determine the heights of the contour lines with
 respect to a plane. The contour calculations use a regularly spaced grid
 determined by the dimensions of Z.
 
-`C = contourc(Z)` computes the contour matrix from data in matrix Z, where Z
-must be at least a 2-by-2 matrix. The contours are isolines in the units of Z.
-The number of contour lines and the corresponding values of the contour lines
-are chosen automatically.
+The contourc function calculates the contour matrix for the other contour
+functions. It is a low-level function that is not called from the command line.
 
-`C = contourc(Z, n)` computes contours of matrix Z with n contour levels.
+The values in Z determine the heights of the contour lines with
+respect to a plane. The contour calculations use a regularly spaced grid
+determined by the dimensions of Z.
 
-`C = contourc(Z, v)` computes contours of matrix Z with contour lines at the
+.. code:: python
+
+    C = contourc(Z)
+
+computes the contour matrix from data in matrix Z, where Z must
+be at least a 2-by-2 matrix. The contours are isolines in the units of Z. The
+number of contour lines and the corresponding values of the contour lines are
+chosen automatically.
+
+.. code:: python
+
+    C = contourc(Z, n)
+
+computes contours of matrix Z with n contour levels.
+
+.. code:: python
+
+    C = contourc(Z, v)
+
+computes contours of matrix Z with contour lines at the
 values specified in vector v. The length of v determines the number of contour
 levels. To compute a single contour of level i, use contourc(Z,[i i]).
 
-`C = contourc(x,y,Z)`, `C = contourc(x,y,Z,n)`, and `C = contourc(x,y,Z,v)`
+.. code:: python
+    C = contourc(x,y,Z)
+    C = contourc(x,y,Z,n)
+    C = contourc(x,y,Z,v)
+
 compute contours of Z using vectors x and y to determine the x- and y-axis
 limits. x and y must be monotonically increasing.
 
-::python
+
+
+.. code:: python
 
     import numpy as np
     import pylab as plt
     from matplotlib import rcParams
     from itertools import cycle
-
+    
     # some exciting test function
     x = np.linspace(-3, 3, 100)
     A, B = np.meshgrid(x, x)
     fab = np.sin(A ** 2) + np.cos(B ** 2)
-
+    
     # the actual call
     r = contourc(A, B, fab)
-
+    
     plt.imshow(fab, extent=[x.min(), x.max(), x.min(), x.max()], cmap=plt.cm.gray)
-
+    
     colors = cycle(rcParams['axes.color_cycle'])
     for level, color in zip(r, colors):
         for pk in level:
             plt.plot(pk[:, 0], pk[:, 1], color=color)
+::
